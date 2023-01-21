@@ -31,14 +31,24 @@ namespace StructureList
             {
                 Console.Write(item + " ");
             }
-            list.Clear();
-            list.insertAfter(2, 10);
+            //list.Clear();
+            //list.insertAfter(2, 10);
+            //list.insertAfter(4, 10);
+            list.AppendLast(25);
             Console.WriteLine();
             foreach (var item in list)
             {
                 Console.Write(item + " ");
             }
-            Console.WriteLine("Hello World!");
+            list.Clear();
+            list.AppendLast(25);
+            
+            list.Add(5);
+            Console.WriteLine();
+            foreach (var item in list)
+            {
+                Console.Write(item + " ");
+            }
             Console.ReadLine();
         }
     }

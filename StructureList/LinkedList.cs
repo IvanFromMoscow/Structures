@@ -7,10 +7,23 @@ using System.Threading.Tasks;
 
 namespace StructureList
 {
+    /// <summary>
+    /// Класс односвязного списка
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class LinkedList<T> : IEnumerable
     {
+        /// <summary>
+        /// Первый элемент односвязного списка
+        /// </summary>
         public Item<T> Head { get; private set; }
+        /// <summary>
+        /// Последний элемент односвязного списка
+        /// </summary>
         public Item<T> Tail { get; private set; }
+        /// <summary>
+        /// Количество элементов в списке
+        /// </summary>
         public int Count { get; private set; }
         public LinkedList()
         {
@@ -18,13 +31,17 @@ namespace StructureList
         }
         public LinkedList(T data)
         {
-            setHeadTailAndCount(data);
+            setHeadAndTail(data);
         }
+        /// <summary>
+        /// Добавление элемента в список
+        /// </summary>
+        /// <param name="data">Данные для добавления в список</param>
         public void Add(T data)
         {
             if (Head == null)
             {
-                setHeadTailAndCount(data);
+                setHeadAndTail(data);
                 return;
             }
             var item = new Item<T>(data);
@@ -32,7 +49,10 @@ namespace StructureList
             Tail = item;
             Count++;
         }
-
+        /// <summary>
+        /// Удаление первого вхождение элемента в список
+        /// </summary>
+        /// <param name="data">данные элемента которые нужно удалить</param>
         public void Delete(T data)
         {
             var item = new Item<T>(data);
@@ -65,6 +85,11 @@ namespace StructureList
                 current = current.Next;
             }
         }
+        /// <summary>
+        /// Вставска после определенного элемента нового элемента в список
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="data"></param>
         public void insertAfter(T target, T data)
         {
             if (Head != null)
@@ -89,9 +114,13 @@ namespace StructureList
                 }
             } else
             {
-                setHeadTailAndCount(data);
+                setHeadAndTail(data);
             }
         }
+        /// <summary>
+        /// Добавление элемента в начало списка
+        /// </summary>
+        /// <param name="data"></param>
         public void AppendHead(T data)
         {
             var item = new Item<T>(data)
@@ -101,6 +130,23 @@ namespace StructureList
             Head = item;
             Count++;
         }
+        /// <summary>
+        /// Добавление элемента в конец списка
+        /// </summary>
+        /// <param name="data"></param>
+        public void AppendLast(T data)
+        {
+            var item = new Item<T>(data);
+            if (Head != null)
+            {
+                Tail.Next = item; 
+                Tail = item;
+                Count++;
+            } else
+            {
+                setHeadAndTail(data);
+            }
+        }
         public void Clear()
         {
             Head = null;
@@ -108,13 +154,21 @@ namespace StructureList
             Count = 0;
         }
 
-        private void setHeadTailAndCount(T data)
+        /// <summary>
+        /// Установка элемента, если он был пустой
+        /// </summary>
+        /// <param name="data"></param>
+        private void setHeadAndTail(T data)
         {
             var item = new Item<T>(data);
             Tail = item;
             Head = item;
             Count = 1;
         }
+        /// <summary>
+        /// Получение перечислителя для возможности перебора элементов списка
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             var current = Head;

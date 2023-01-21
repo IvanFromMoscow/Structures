@@ -1,8 +1,15 @@
 ﻿using System;
 namespace StructureList
 {
+    /// <summary>
+    /// элемент списка
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Item<T>
     {
+        /// <summary>
+        /// Данные элемента списка
+        /// </summary>
         private T data;
         public T Data
         {
@@ -16,6 +23,9 @@ namespace StructureList
 
             }
         }
+        /// <summary>
+        /// Ссылка на следующий элемент в списке
+        /// </summary>
         public Item<T> Next { get; set; }
 
         public Item() 
